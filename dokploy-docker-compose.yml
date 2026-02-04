@@ -1,8 +1,8 @@
-# Dokploy-friendly: uses named volumes so OPENCLAW_CONFIG_DIR / OPENCLAW_WORKSPACE_DIR
-# are not required. Override with bind mounts by setting those env vars if needed.
+# Dokploy-friendly: uses named volumes and defaults to the official image from GHCR.
+# Set OPENCLAW_IMAGE to a custom image (e.g. your Dokploy build) if needed.
 services:
   openclaw-gateway:
-    image: ${OPENCLAW_IMAGE:-openclaw:local}
+    image: ${OPENCLAW_IMAGE:-ghcr.io/openclaw/openclaw:main}
     environment:
       HOME: /home/node
       TERM: xterm-256color
@@ -29,7 +29,7 @@ services:
       ]
 
   openclaw-cli:
-    image: ${OPENCLAW_IMAGE:-openclaw:local}
+    image: ${OPENCLAW_IMAGE:-ghcr.io/openclaw/openclaw:main}
     environment:
       HOME: /home/node
       TERM: xterm-256color
